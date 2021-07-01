@@ -59,15 +59,15 @@ def main():
 	args = parser.parse_args()
 
 	if args.mode == 'Run_Cheats':
-		s = screensoter("Counter-Strike")  
-		d = detector()
+		s = screensoter("Counter-Strike: Global Offensive - OpenGL")  
+		d = detector(args)
 		while True:
 		    open_cv_image = s.get_screenshot()
-		    open_cv_image, detection_time = d.run(open_cv_image)
-		    fps = str(int(1/detection_time))
+		    open_cv_image, detection_time = d.run(open_cv_image) # run detection!
+		    fps = str(int(1/detection_time)) #calculate the time in seconds it took to detect this image
 		    font = cv2.FONT_HERSHEY_SIMPLEX
-		    cv2.putText(open_cv_image, "fps: %s"%fps, (7,70), font, 1, (100, 255, 0), 2, cv2.LINE_AA)
-		    cv2.imshow('image',numpy.array(open_cv_image))
+		    cv2.putText(open_cv_image, "fps: %s"%fps, (7,40), font, 1, (100, 255, 0), 2, cv2.LINE_AA) #puts a FPS counter on the top
+		    cv2.imshow('image',numpy.array(open_cv_image)) #show the image with detection boxes!
 		    cv2.waitKey(1)    
 
 	elif args.mode == 'Train':

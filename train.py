@@ -27,7 +27,7 @@ def train(args):
     #zipping images
     with ZipFile('obj.zip', 'w') as zip:
         for f in images_paths:
-            zip.write(f,arcname=f[f.index('/')+1:])
+            zip.write(f,arcname=f[f.rindex('/')+1:])
 
     #zipping other files
     with ZipFile('Training_Pack.zip', 'w') as zip:
@@ -35,6 +35,7 @@ def train(args):
         zip.write(args.yolo_data_file,arcname='obj.data')
         zip.write(args.yolo_names_file,arcname='obj.names')
         zip.write("generate_train.py")
+        zip.write("generate_valid.py")
         zip.write(args.yolo_weights_file,arcname='obj.weights')
         zip.write("obj.zip")
 
